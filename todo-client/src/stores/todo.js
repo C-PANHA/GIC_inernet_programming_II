@@ -50,8 +50,7 @@ export const useTodoStore = defineStore("todo", {
       if (!todo) return;
 
       const updatedData = {
-        completedAt:
-          todo.completedAt != null ? null : new Date().toISOString(),
+        completedAt: todo.completedAt != null ? null : new Date().toISOString(),
       };
 
       try {
