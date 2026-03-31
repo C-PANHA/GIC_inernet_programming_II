@@ -5,6 +5,8 @@ import { User } from './modules/user/user.entity';
 import { Task } from './modules/task/task.entity';
 import { UserModule } from './modules/user/user.module';
 import { TaskModule } from './modules/task/task.module';
+import { NotificationsModule } from './notifications/notifications.module';
+import { OrdersModule } from './orders/orders.module';
 import { Receipt } from './receipts/receipt.entity';
 import { ReceiptsModule } from './receipts/receipts.module';
 
@@ -22,6 +24,8 @@ import { ReceiptsModule } from './receipts/receipts.module';
     }),
     UserModule,
     TaskModule,
+    NotificationsModule,
+    OrdersModule,
     ReceiptsModule,
   ],
 })
