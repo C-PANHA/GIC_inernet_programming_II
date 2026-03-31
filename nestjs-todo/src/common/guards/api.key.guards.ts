@@ -4,6 +4,7 @@ import {
   Injectable,
   UnauthorizedException,
 } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
 import { Request } from 'express';
 
 interface RequestWithHeaders extends Request {
@@ -12,11 +13,15 @@ interface RequestWithHeaders extends Request {
 
 @Injectable()
 export class ApiKeyGuard implements CanActivate {
+  constructor(private readonly configService: ConfigService) {}
+
   canActivate(context: ExecutionContext): boolean {
     const req = context.switchToHttp().getRequest<RequestWithHeaders>();
-    const apiKey = req.headers['x-api-key'];
+    const headerValue = req.headers['x-api-key'];
+    const apiKey = Array.isArray(headerValue) ? headerValue[0] : headerValue;
+    const expectedApiKey = this.configService.get<string>('API_KEY');
 
-    if (!apiKey || apiKey !== process.env.API_KEY) {
+    if (!apiKey || !expectedApiKey || apiKey !== expectedApiKey) {
       throw new UnauthorizedException('Invalid API key');
     }
 
