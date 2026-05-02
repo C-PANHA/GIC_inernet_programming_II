@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "@apollo/server-plugin-landing-page-graphql-playground": "^4.0.1",
+    "graphql": "^16.13.2"
+  }
+}
