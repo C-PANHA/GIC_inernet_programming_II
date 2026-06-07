@@ -1,8 +1,8 @@
 <template>
-  <li class="list pending" @click="toggleStatus(todo.id)">
-    <input type="checkbox" :checked="todo.completedAt != null" />
-    <span class="task">{{ todo.name }}</span>
-    <i class="uil" :class="icon"></i>
+  <li class="list pending" @click="toggleTodo(todo)">
+    <input type="checkbox" :checked="todo.is_done" />
+    <span class="task">{{ todo.title }}</span>
+    <i class="uil uil-trash-alt" @click.stop="deleteTodo(todo.id)"></i>
   </li>
 </template>
 <script>
@@ -12,10 +12,13 @@ export default {
     const todoStore = useTodoStore();
     return { todoStore };
   },
-  props: ["todo", "icon"],
+  props: ["todo"],
   methods: {
-    toggleStatus(todoId) {
-      this.todoStore.toggleStatus(todoId);
+    async toggleTodo(todo) {
+      await this.todoStore.toggleTodo(todo);
+    },
+    async deleteTodo(id) {
+      await this.todoStore.deleteTodo(id);
     },
   },
 };

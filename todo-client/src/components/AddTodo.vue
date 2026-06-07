@@ -12,8 +12,13 @@
 export default {
   methods: {
     addTodo(e) {
-      this.$emit("added", e.target.value);
-      this.$refs.input.value = null;
+      const title = e.target.value?.trim();
+      if (!title) {
+        return;
+      }
+
+      this.$emit("added", title);
+      this.$refs.input.value = "";
     },
   },
 };

@@ -226,7 +226,15 @@ query {
 }
 ```
 
-## Personal Preference: Code-First
+## Commit History & Personal Preference
+
+### Commits Showing Progression
+```
+f83f9a9 schema-first working
+dc43fcc code-first working
+```
+
+### Personal Preference: Code-First
 
 **Why I prefer code-first for this project:**
 1. **Type Safety**: TypeScript classes ensure schema matches business logic
